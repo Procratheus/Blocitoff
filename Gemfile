@@ -9,6 +9,13 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test do
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'capybara', '~> 2.3.0'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
 group :development do 
   gem 'sqlite3'
 end
