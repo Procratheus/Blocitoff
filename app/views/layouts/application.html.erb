@@ -10,28 +10,27 @@
 </head>
 <body>
   <div class="container">
-   <ul class="nav nav-pills">
-    <li><%= link_to "Blocitoff", root_path %></li>
-    <div class="pull-right user-info">
-      <li>
-        <% if current_user %>
-          <%= current_user.email %>! <%= link_to destroy_user_session_path, class: "btn btn-default btn-xs", method: :delete  do %>
-            <span class="glyphicon glyphicon-log-out"></span>
-          <% end %>
-        <% else %>
-          <%= link_to new_user_session_path, class: "btn btn-default" do %>
-            <span>Sign-In</span>
-          <% end %>
-             or 
-          <%= link_to new_user_registration_path, class: "btn btn-default" do %>
-            <span>Sign-up</span>
-          <% end %>
-        <% end %>
-      </li>   
+    <div class="header">
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'List', '#' %></li>
+          <li>
+            <% if current_user %>
+              <%= link_to current_user.email, edit_user_registration_path %>
+          </li>
+          <li><%= link_to 'log-out', destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to 'Sign-In' ,new_user_session_path %>
+            <% end %>
+          </li>   
+        </ul>
+      </nav>
+      <h3 class="text-muted">Blocitoff</h3>
     </div>
-  </ul>
 
     <%= yield %>
+
   </div>
 </body>
 </html>
