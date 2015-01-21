@@ -47,3 +47,5 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-twitter'
