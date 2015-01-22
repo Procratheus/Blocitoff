@@ -93,6 +93,12 @@ body {
   }
 }
 
+/* Customise the login button */
+
+.sign-up-button {
+  margin-top: 2.5em;
+}
+
 
 
 
