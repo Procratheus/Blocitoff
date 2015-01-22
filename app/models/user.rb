@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, :omniauth_providers => [:twitter]
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.uid + '@twitter.com'
@@ -12,6 +14,10 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
   end
     
 end
