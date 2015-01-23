@@ -1,0 +1,7 @@
+<h1>Lists#show</h1>
+
+<% if @list.nil? %>
+  <%= link_to "Create new list", new_list_path %>
+<% else %>
+  <%= @list %>
+<% end %>
