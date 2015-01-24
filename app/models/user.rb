@@ -9,9 +9,10 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.name = auth.info.name
       user.provider = auth.provider
       user.uid = auth.uid
+      user.name = auth.info.nickname
+      user.email = auth.info.nickname + "@twitter.com"
     end
   end
 
@@ -25,9 +26,13 @@ class User < ActiveRecord::Base
       super
     end
   end
-    
+
   def password_required?
     super && provider.blank?
+  end
+
+  def email_required?
+    super && email.blank?
   end
 
   def update_with_password(params, *options)

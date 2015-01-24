@@ -5,11 +5,12 @@
   <div class="form-group"><%= f.label :name %><br />
     <%= f.text_field :name, autocomplete: "off" %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <% if f.object.email_required? %>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+  <% end %>
 
   <% if f.object.password_required? %>
     <div class="form-group">
