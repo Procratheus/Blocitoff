@@ -13,7 +13,7 @@
         <ul class="nav nav-pills pull-right">
             <% if current_user %>
               <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'List', list_path %></li>
+              <li><%= link_to 'List', '#' %></li>
             <% else %>
               <li><%= link_to 'Home', root_path %></li>
             <% end %>
@@ -21,9 +21,13 @@
             <% if current_user %>
               <%= link_to current_user.email, edit_user_registration_path %>
           </li>
-          <li><%= link_to 'log-out', destroy_user_session_path, method: :delete %>
+          <li>
+              <%= link_to 'log-out', destroy_user_session_path, method: :delete %>
             <% else %>
               <%= link_to 'Sign-In' ,new_user_session_path %>
+          </li>
+          <li>
+              <%= link_to 'Sign-In with twitter', user_omniauth_authorize_path(:twitter) %>
             <% end %>
           </li>   
         </ul>
