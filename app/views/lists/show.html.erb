@@ -1,5 +1,24 @@
-<h1>Lists#show</h1>
+<h1><%= markdown @list.title %></h1>
+
+<h2><%= markdown @list.description %></h2>
 
 <% if @list.nil? %>
   <%= link_to "Create new list", new_list_path, class: "btn btn-success" %>
+<% else %>
+  <div class="panel panel-default">
+    <div class="col-md-12">
+      <div class="col-md-1 panel-heading">
+        <p>Check</p>
+      </div>
+      <div class="col-md-7 panel-heading">
+        <p>ToDo List Item</p>
+      </div>
+      <div class="col-md-2 panel-heading">
+        <p>Time Left</p>
+      </div>
+      <div class="col-md-2 panel-heading">
+        <p>Actions</p>
+      </div>
+    </div>    
+  </div>
 <% end %>
