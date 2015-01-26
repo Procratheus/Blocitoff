@@ -16,7 +16,7 @@
               <% if @list == nil %> 
                 <li><%= link_to 'Create New Todo List', new_list_path %></li>
               <% else %>
-                <li><%= link_to @list.title, list_path(@list) %></li>
+                <li><%= link_to @list.title, '#' %></li>
               <% end %>
             <% else %>
               <li><%= link_to 'Home', root_path %></li>

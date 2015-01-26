@@ -1,10 +1,11 @@
 class List < ActiveRecord::Base
   belongs_to :user
 
+  includes ActiveModel::Validator
+  attr_accessor :user_id
   # list must have a title and a description
   validates :title, presence: true
   validates :description, presence: true
-  validates :user_id, presence: true
-  # Validates the uniqueness of a user id so that User can only have one list
-  validates_uniqueness_of :user_id, there_can_be_only_one: true
+  # Validates the uniqueness of a user id so that User can only have one list with a cystom validation to create our own error message.
+  validates :user_id, uniqueness: { value: true , message: "there can be only one! 'The Highlander will now chop your head off.'" }
 end
