@@ -1,9 +1,8 @@
 class List < ActiveRecord::Base
   belongs_to :user
+  has_many :items
 
-  includes ActiveModel::Validator
-  attr_accessor :user_id
-  # list must have a title and a description
+  # List must have a title and a description.
   validates :title, presence: true
   validates :description, presence: true
   # Validates the uniqueness of a user id so that User can only have one list with a cystom validation to create our own error message.
