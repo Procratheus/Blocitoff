@@ -1,0 +1,23 @@
+<%= content_tag :li, class: 'col-md-12', id: "item-#{item.id}" do %>
+  <div class="col-md-1">
+    <input type="checkbox">
+  </div>
+  <div class="description col-md-7">
+    <%= item.name %>  
+  </div> 
+  <div class="time-left col-md-2">
+    <%= item.days_left %>
+  </div> 
+  <div class="buttons col-md-2">
+    <p>
+      <%= link_to "#", class: "btn btn-warning btn-xs" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to "#", method: :delete, class: "btn btn-danger btn-xs" do %>
+        <i class="fa fa-trash-o"></i>
+      <% end %>
+    </p> 
+  </div>
+<% end %>

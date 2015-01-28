@@ -1,37 +1,33 @@
 
 <div class="jumbotron">
   <div>
-    <h2><%= markdown @list.title %></h2>
+    <h1><%= markdown @list.title %></h1>
     <h4 class="lead"><%= markdown @list.description %></h4>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-
+  <div class="row input-bar">
+    <div class="col-md-12">
+      <%= render partial: 'items/form', locals: { list: @list, item: @list.items.new } %>
     </div>
-    <div class="col-md-1">
-      <p><%= link_to '#', class: "btn btn-info btn-sm" do %> 
-        <span>Add</span>
-      <% end %> 
-      </p>
-    </div>
-     <div class="col-md-1">
-      <p><%= link_to edit_list_path, class: "btn btn-info btn-sm" do %> 
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <p><%= link_to edit_list_path, class: "btn btn-info btn-md" do %> 
         <span>Edit</span>
       <% end %> 
       </p>
     </div>
-    <div class="col-md-1">
-      <p><%= link_to '#', class: "btn btn-warning btn-sm" do %> 
+    <div class="col-md-4">
+      <p><%= link_to '#', class: "btn btn-warning btn-md" do %> 
         <span>Clear</span>
       <% end %> 
       </p>
     </div>
-    <div class="col-md-1">
-      <p><%= link_to @list, method: :delete, data: { confirm: "Are you sure you want yo delete this list?" }, class: "btn btn-danger btn-sm" do %> 
+    <div class="col-md-4">
+      <p><%= link_to @list, method: :delete, data: { confirm: "Are you sure you want yo delete this list?" }, class: "btn btn-danger btn-md" do %> 
         <span>Delete</span>
       <% end %> 
     </div>
-  </div>
+  </div>  
 </div>
 
 <% if @list.nil? %>
@@ -51,7 +47,16 @@
       <div class="col-md-2 panel-heading">
         <p>Actions</p>
       </div>
-    </div>    
+    </div> 
+      <div class="panel-body">
+        <ul>
+        <% if @list.items != nil %>
+          <%= render partial: 'items/item', collection: @item %>      
+        <% end %>
+          
+        </ul>
+      </div>
+    </div>   
   </div>
 <% end %>
 

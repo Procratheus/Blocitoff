@@ -1,6 +1,6 @@
 class List < ActiveRecord::Base
   belongs_to :user
-  has_many :items
+  has_many :items, dependent: :destroy
 
   # List must have a title and a description.
   validates :title, presence: true
