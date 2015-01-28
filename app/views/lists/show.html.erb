@@ -50,7 +50,7 @@
     </div> 
       <div class="panel-body">
         <ul>
-        <% if @list.items != nil %>
+        <% if @list.items.nil? %>
           <%= render partial: 'items/item', collection: @item %>      
         <% end %>
           

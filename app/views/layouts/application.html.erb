@@ -13,10 +13,11 @@
         <ul class="nav nav-pills pull-right">
             <% if current_user %>
               <li><%= link_to 'Home', root_path %></li>
-              <% if @list == nil %> 
+              <% if @list.nil? %> 
+                
                 <li><%= link_to 'Create New Todo List', new_list_path %></li>
               <% else %>
-                <li><%= link_to @list.title, '#' %></li>
+                <li><%= link_to @lists.title , @lists %></li>
               <% end %>
             <% else %>
               <li><%= link_to 'Home', root_path %></li>
