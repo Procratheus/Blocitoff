@@ -18,13 +18,11 @@ users = User.all
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph
       )
-    list.update!(created_at: rand(1.minutes...7.day).ago)
     unless List.find(:user).count == nil
       list.update!(user: users.sample)
     end
   list.save
 end
-
 
 lists = List.all
 
@@ -32,11 +30,12 @@ lists = List.all
 40.times do
   Item.create!(
     list: lists.sample,
-    name: Faker::Lorem.sentence
+    name: Faker::Lorem.sentence,
+    created_at: rand(1.minutes...7.day).ago
     )
 end
 
 puts "Seed Finished"
 puts "#{User.count} created"
 puts "#{List.count} created"
-puts "#{Comment.count} created"
+puts "#{Item.count} created"
