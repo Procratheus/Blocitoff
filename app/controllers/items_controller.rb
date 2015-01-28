@@ -7,17 +7,17 @@ class ItemsController < ApplicationController
    list_name = @list.title
     if @item.save
       flash[:notice] = "Item was added to the #{list_name} succesfully."
-      redirect_to @list
+      redirect_to root_path
     else
       flash[:error] = "Item was not added to #{list_name} succesfully. Please try again."
-      redirect_to @list
+      redirect_to root_path
     end
   end
 
   protected
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :list)
   end
 
 end

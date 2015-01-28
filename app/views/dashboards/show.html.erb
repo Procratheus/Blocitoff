@@ -1,1 +1,37 @@
 <h3>My dashboard</h3>
+<div class="jumbotron">
+  <div>
+    <h1>List: <%=  link_to @dashboard.user_list.title, edit_list_path(@dashboard.user_list) %></h1>
+    <h4 class="lead"><%=  @dashboard.user_list.description %></h4>
+  </div>
+  <div class="row input-bar">
+    <div class="col-md-12">
+      <%= render 'items/form', list: @dashboard.user_list %>
+    </div>
+  </div>
+</div>
+
+<% if @dashboard.list_items.any? %>
+  <div class="panel panel-default">
+    <div class="col-md-12">
+      <div class="col-md-1 panel-heading">
+        <p>Check</p>
+      </div>
+      <div class="col-md-7 panel-heading">
+        <p>ToDo List Item</p>
+      </div>
+      <div class="col-md-2 panel-heading">
+        <p>Time Left</p>
+      </div>
+      <div class="col-md-2 panel-heading">
+        <p>Actions</p>
+      </div>
+    </div> 
+      <div class="panel-body">
+        <ul>
+          <%= render @dashboard.list_items %>
+        </ul>
+      </div>
+    </div>   
+  </div>
+<% end %>
