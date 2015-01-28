@@ -1,8 +1,8 @@
 
 <div class="jumbotron">
   <div>
-    <h1><%= markdown @list.title %></h1>
-    <h4 class="lead"><%= markdown @list.description %></h4>
+    <h1><%=  @list.title %></h1>
+    <h4 class="lead"><%=  @list.description %></h4>
   </div>
   <div class="row input-bar">
     <div class="col-md-12">
@@ -50,8 +50,8 @@
     </div> 
       <div class="panel-body">
         <ul>
-        <% if @list.items != nil %>
-          <%= render partial: 'items/item', collection: @item %>      
+        <% if @items.any? %>
+          <%= render partial: 'items/item', collection: @items %>
         <% end %>
           
         </ul>
