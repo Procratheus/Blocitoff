@@ -1,0 +1,22 @@
+<div class="header">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li><%= link_to 'Home', root_path %></li>
+      <% if current_user %>
+        <li>
+          <%= link_to current_user.email, edit_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Sign in with email' ,new_user_session_path %>
+          <%= link_to 'Sign in with Twitter', user_omniauth_authorize_path(:twitter) %>
+        </li>   
+      <% end %>
+    </ul>
+  </nav>
+  <h3 class="text-muted">Blocitoff</h3>
+</div>
+
