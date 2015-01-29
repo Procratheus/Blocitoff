@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <div>
-    <h1><%=  @list.title %></h1>
+    <h1><%= @list.title %></h1>
     <h4 class="lead"><%=  @list.description %></h4>
   </div>
   <div class="row input-bar">
@@ -47,15 +47,11 @@
         <p>Actions</p>
       </div>
     </div> 
-      <div class="panel-body">
-        <ul>
-        <% if @items.any? %>
-          <%= render partial: 'items/item', collection: @items %>
-        <% end %>
-          
-        </ul>
-      </div>
-    </div>   
+    <div class="panel-body col-md-12"> 
+      <% if @items.any? %>
+        <%= render partial: 'items/item', collection: @items %>
+      <% end %>
+    </div>  
   </div>
 <% end %>
 

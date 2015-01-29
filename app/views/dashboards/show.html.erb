@@ -1,8 +1,8 @@
 <h3>My dashboard</h3>
-<div class="jumbotron">
+<div class="jumbotron jumbotron-list">
   <div>
-    <h1>List: <%=  link_to @dashboard.user_list.title, edit_list_path(@dashboard.user_list) %></h1>
-    <h4 class="lead"><%=  @dashboard.user_list.description %></h4>
+    <h2><b>List Name: </b></br><%= link_to @dashboard.user_list.title, edit_list_path(@dashboard.user_list) %></h2>
+    <h2å class="lead"><b>Description:</b><%=  markdown @dashboard.user_list.description %></h2>
   </div>
   <div class="row input-bar">
     <div class="col-md-12">
@@ -13,25 +13,38 @@
 
 <% if @dashboard.list_items.any? %>
   <div class="panel panel-default">
-    <div class="col-md-12">
-      <div class="col-md-1 panel-heading">
-        <p>Check</p>
+    <div class="col-md-12 panel-heading">
+      <div class="col-md-1 panel-title">
+        <h5>Check</h5>
       </div>
-      <div class="col-md-7 panel-heading">
-        <p>ToDo List Item</p>
+      <div class="col-md-7 panel-title">
+        <h5>ToDo List Task</h5>
       </div>
-      <div class="col-md-2 panel-heading">
-        <p>Time Left</p>
+      <div class="col-md-2 panel-title">
+        <h5>Time Left</h5>
       </div>
-      <div class="col-md-2 panel-heading">
-        <p>Actions</p>
+      <div class="col-md-2 panel-title">
+        <h5>Actions</h5>
       </div>
     </div> 
-      <div class="panel-body">
-        <ul>
-          <%= render @dashboard.list_items %>
-        </ul>
+    <div class="panel-body">
+      <%= render @dashboard.list_items %>     
+    </div>  
+    <div class="panel-footer">
+      <div class="pull-left">
+        <p>
+          <%= link_to '#', class: "btn btn-warning btn-md" do %> 
+            <span>Clear List?</span>
+          <% end %> 
+        </p>
       </div>
-    </div>   
+      <div class="pull-right">
+        <p>
+          <%= link_to @list, method: :delete, data: { confirm: "Are you sure you want yo delete this list?" }, class: "btn btn-danger btn-md" do %> 
+            <span>Delete List?</span>
+          <% end %> 
+        </p>
+      </div>   
+    </div>
   </div>
 <% end %>

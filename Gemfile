@@ -16,11 +16,14 @@ gem 'omniauth-twitter'
 gem 'faker'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'redcarpet'
+gem 'bootstrap-tooltip-rails', '~> 0.1'
+
 
 group :development do 
   gem 'sqlite3'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'pry'
 end
 
 group :test do

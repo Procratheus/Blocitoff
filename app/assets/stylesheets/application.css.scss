@@ -14,6 +14,15 @@ body {
   padding-left: 15px;
 }
 
+.panel-heading {
+  margin-bottom:10px;
+}
+
+.list-item {
+  margin-bottom: 10px;
+  border-bottom: 3px dashed whitesmoke;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -48,6 +57,12 @@ body {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
+.jumbotron-list {
+  padding-top:12px;
+  padding-bottom:12px;
+}
+
 .jumbotron .btn {
   padding: 14px 24px;
   font-size: 21px;
@@ -59,8 +74,18 @@ body {
   font-size: 15px;
 }
 
+.button-list {
+  padding: 2px 4px;
+  margin-left: 5px;
+}
+
 .input-bar {
   margin-bottom: 10px;
+}
+
+.panel-footer {
+  min-height: 60px;
+  margin-top: 20px;
 }
 
 /* Supporting marketing content */

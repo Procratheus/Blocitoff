@@ -1,23 +1,25 @@
-<%= div_for(item, class: 'col-md-12') do %>
-  <div class="col-md-1">
+<%= div_for(item, class: 'col-md-12 list-item', id: "#{item.id}") do %>
+  <div class="col-md-1" data-toggle="tool-tip", data-placement="top", title="check task">
     <input type="checkbox">
   </div>
   <div class="description col-md-7">
-    <%= item.name %>  
+    <%= markdown item.name %>  
   </div> 
   <div class="time-left col-md-2">
-    <%#= item.days_left %>
+    <%= "#{pluralize(item.days_left, "day")} left" %>
   </div> 
-  <div class="buttons col-md-2">
-    <p>
-      <%= link_to "#", class: "btn btn-warning btn-xs" do %>
-        <i class="fa fa-pencil"></i>
-      <% end %>
-    </p>
-    <p>
-      <%= link_to "#", method: :delete, class: "btn btn-danger btn-xs" do %>
-        <i class="fa fa-trash-o"></i>
-      <% end %>
-    </p> 
+  <div class="button col-md-2">
+    <button class="btn btn-danger btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Delete task">
+      <%= link_to "", [item.list, item], class: "glyphicon glyphicon-trash", method: :delete, remote: true %>
+    </button>
+    <button class="btn btn-warning btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Edit task">
+      <%= link_to "", list, class: "glyphicon glyphicon-pencil", method: :update, remote: true %>
+    </button>
+    <button class="btn btn-success btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Delete task">
+      <%= link_to "#", list, class: "glyphicon glyphicon-ok", method: :update, remote: true %>
+    </button>
   </div>
 <% end %>
+
+
+
