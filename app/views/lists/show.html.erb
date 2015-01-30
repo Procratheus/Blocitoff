@@ -1,60 +1,49 @@
-<div class="jumbotron">
+<h3>My dashboard</h3>
+<div class="jumbotron jumbotron-list">
   <div>
-    <h1><%= @list.title %></h1>
-    <h4 class="lead"><%=  @list.description %></h4>
+    <h2><b>List Name: </b></br><%= link_to @list.title, edit_list_path(@list) %></h2>
+    <h2 class="lead"><b>Description:</b><%=  markdown @list.description %></h2>
   </div>
   <div class="row input-bar">
     <div class="col-md-12">
-      <%= render partial: 'items/form', locals: { list: @list, item: @list.items.new } %>
+      <%= render 'items/form', list: @list %>
     </div>
   </div>
-  <div class="col-md-12">
-    <div class="col-md-4">
-      <p><%= link_to edit_list_path, class: "btn btn-info btn-md" do %> 
-        <span>Edit</span>
-      <% end %> 
-      </p>
-    </div>
-    <div class="col-md-4">
-      <p><%= link_to '#', class: "btn btn-warning btn-md" do %> 
-        <span>Clear</span>
-      <% end %> 
-      </p>
-    </div>
-    <div class="col-md-4">
-      <p><%= link_to @list, method: :delete, data: { confirm: "Are you sure you want yo delete this list?" }, class: "btn btn-danger btn-md" do %> 
-        <span>Delete</span>
-      <% end %> 
-    </div>
-  </div>  
 </div>
 
-<% if @list.nil? %>
-  <%= link_to "Create new list", new_list_path, class: "btn btn-success" %>
-<% else %>
   <div class="panel panel-default">
-    <div class="col-md-12">
-      <div class="col-md-1 panel-heading">
-        <p>Check</p>
+    <div class="col-md-12 panel-heading">
+      <div class="col-md-1 panel-title">
+        <h5>Check</h5>
       </div>
-      <div class="col-md-7 panel-heading">
-        <p>ToDo List Item</p>
+      <div class="col-md-7 panel-title">
+        <h5>ToDo List Task</h5>
       </div>
-      <div class="col-md-2 panel-heading">
-        <p>Time Left</p>
+      <div class="col-md-2 panel-title">
+        <h5>Time Left</h5>
       </div>
-      <div class="col-md-2 panel-heading">
-        <p>Actions</p>
+      <div class="col-md-2 panel-title">
+        <h5>Actions</h5>
       </div>
     </div> 
-    <div class="panel-body col-md-12"> 
-      <% if @items.any? %>
-        <%= render partial: 'items/item', collection: @items %>
-      <% end %>
+    <div class="panel-body">
+      <%= render @items %>     
     </div>  
+    <div class="panel-footer">
+      <div class="pull-left">
+        <p>
+          <%= link_to '#',  class: "btn btn-warning btn-md" do %> 
+            <span>Clear List?</span>
+          <% end %> 
+        </p>
+      </div>
+      <div class="pull-right">
+        <p>
+          <%= link_to @list, method: :delete, data: { confirm: "Are you sure you want yo delete this list?" }, class: "btn btn-danger btn-md" do %> 
+            <span>Delete List?</span>
+          <% end %> 
+        </p>
+      </div>   
+    </div>
   </div>
-<% end %>
-
-
-
 

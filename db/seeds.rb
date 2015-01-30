@@ -1,5 +1,9 @@
 require 'faker'
 
+User.delete_all
+List.delete_all
+Item.delete_all
+
 # Create Users
 5.times do 
   user = User.new(
@@ -12,22 +16,17 @@ end
 users = User.all
 
 # Create Lists
-5.times do
-    list = List.new(
-      user: users.sample,
-      title: Faker::Lorem.sentence,
-      description: Faker::Lorem.paragraph
-      )
-    unless List.find(:user).count == nil
-      list.update!(user: users.sample)
-    end
-  list.save
+users.each do |user|
+  user.create_list(
+    title: Faker::Lorem.sentence,
+    description: Faker::Lorem.sentence
+    )
 end
 
 lists = List.all
 
 # Create Items
-40.times do
+50.times do
   Item.create!(
     list: lists.sample,
     name: Faker::Lorem.sentence,

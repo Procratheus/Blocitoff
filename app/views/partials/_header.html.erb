@@ -12,6 +12,8 @@
       <% else %>
         <li>
           <%= link_to 'Sign in with email' ,new_user_session_path %>
+        </li>
+        <li>
           <%= link_to 'Sign in with Twitter', user_omniauth_authorize_path(:twitter) %>
         </li>   
       <% end %>

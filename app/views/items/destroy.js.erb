@@ -1,0 +1,8 @@
+<% if @item.destroyed? %>
+  $('#item_' + <%= item.id %>).hide();
+<% else %>
+  $('.container').append('<div class="alert alert-warning alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                            <%= flash[:error] %>
+                        </div>');
+<% end %>
