@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user! # user must be signed in before any items controller action can be accessed
-
   respond_to :html, :js
 
   def create
@@ -32,7 +30,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @list = List.find(params[:list_id])
-    @item = @list.items
+    @item = @list.items.find(params[:id])
     if @item.destroy
       flash[:notice] = "Task was deleted."
     else
@@ -43,10 +41,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  protected
+  def destroy_all
+    @list = List.find(params[:list_id])
+    @list_items = @list.items
+    @list_items.each do |item|
+      item.destroy
+    end
+    flash[:notice] = "List was cleared of all items."
+    redirect_to @list
+  end
+
+  private
 
   def item_params
-    params.require(:item).permit(:name, :list)
+    params.require(:item).permit(:name)
   end
 
 end

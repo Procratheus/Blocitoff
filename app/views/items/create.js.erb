@@ -1,5 +1,6 @@
-<% if @item.saved? %>
-  
+<% if @item.valid? %>
+  $("<%= escape_javascript(render @item ) %>").prependTo(".js-list").hide().fadeIn();
+  $(".new-item").html("<%= escape_javascript(render partial: "items/form", locals: { list: @list, item: @list.items.new }) %>");  
 <% else %>
-
+  $(".new-item").html("<%= escape_javascript(render partial: "items/form", locals: { list: @list, item: @list.items.build }) %>");
 <% end %>

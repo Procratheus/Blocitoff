@@ -1,12 +1,12 @@
-<h3>My dashboard</h3>
+<h3 class="dashboard">My dashboard</h3>
 <div class="jumbotron jumbotron-list">
   <div>
     <h2><b>List Name: </b></br><%= link_to @list.title, edit_list_path(@list) %></h2>
     <h2 class="lead"><b>Description:</b><%=  markdown @list.description %></h2>
   </div>
   <div class="row input-bar">
-    <div class="col-md-12">
-      <%= render 'items/form', list: @list %>
+    <div class="col-md-12 new-item">
+      <%= render partial: 'items/form', locals: { list: @list, item: @list.items.build } %>
     </div>
   </div>
 </div>
@@ -27,12 +27,14 @@
       </div>
     </div> 
     <div class="panel-body">
-      <%= render @items %>     
+      <div class="js-list">
+        <%= render @items %>  
+      </div>           
     </div>  
     <div class="panel-footer">
       <div class="pull-left">
         <p>
-          <%= link_to '#',  class: "btn btn-warning btn-md" do %> 
+          <%= link_to destroy_all_list_items_path(@list), class: "btn btn-warning btn-md", method: :delete, data: { confirm: "Are you sure you want to delete all the items on this list?" }  do %> 
             <span>Clear List?</span>
           <% end %> 
         </p>
