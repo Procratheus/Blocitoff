@@ -17,7 +17,7 @@ gem 'faker'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'redcarpet'
 gem 'bootstrap-tooltip-rails', '~> 0.1'
-
+gem 'whenever', :require => false
 
 group :development do 
   gem 'sqlite3'
