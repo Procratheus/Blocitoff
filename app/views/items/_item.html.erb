@@ -1,23 +1,23 @@
 <% if item.persisted? %>
   <%= div_for(item, class: 'col-md-12 list-item', id: "item_#{item.id}") do %>
-    <div class="col-md-1" data-toggle="tool-tip", data-placement="top", title="check task">
-      <input type="checkbox">
+    <div class="col-md-8 description "> 
+      <% if checked = item.checked_item(item) %>     
+        <%= link_to [@list ,item, checked] , method: :destroy do %>
+          <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="check task" checked>
+        <% end %> 
+      <% else %>
+        <%= link_to [@list ,item, Checked.new] , method: :post do %>
+          <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="Uncheck task">
+        <% end %> 
+      <% end %>    
+      <span class=<%= "#{item.id}" %>><%= markdown item.name %></span>    
     </div>
-    <div class="description col-md-7">
-      <%= markdown item.name %>  
-    </div> 
     <div class="time-left col-md-2">
       <%= "#{pluralize(item.days_left, "day")} left" %>
     </div> 
     <div class="button col-md-2">
-      <button class="btn btn-danger btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Delete task">
-        <%= link_to "", [item.list, item], class: "glyphicon glyphicon-trash", method: :delete, remote: true %>
-      </button>
-      <button class="btn btn-warning btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Edit task">
-        <%= link_to "", [item.list, item], class: "glyphicon glyphicon-pencil", method: :update, remote: true %>
-      </button>
-      <button class="btn btn-success btn-sm button-list pull-right", data-toggle="tool-tip", data-placement="top", title="Delete task">
-        <%= link_to "", [item.list, item], class: "glyphicon glyphicon-ok", method: :update, remote: true %>
+      <button class="btn btn-success btn-sm button-list", data-toggle="tool-tip", data-placement="top", title="Complete task">
+        <%= link_to "", [item.list, item], class: "glyphicon glyphicon-ok", method: :delete, remote: true %>
       </button>
     </div>
   <% end %>

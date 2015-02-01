@@ -1,8 +1,9 @@
 class ListsController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   def show
     @list = List.find(params[:id])
-    @items = @list.items
+    @items = @list.items.order(sort_column + " " + sort_direction)
   end
 
   def new
@@ -53,6 +54,14 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:title, :description)
+  end
+
+  def sort_column
+    Item.column_names.include?(params[:sort]) ? params[:sort] : "created_at" 
+  end
+
+  def sort_direction
+   ["asc", "desc"].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

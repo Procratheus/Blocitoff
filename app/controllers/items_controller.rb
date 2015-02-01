@@ -15,19 +15,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update
-    @list = List.find(params[:list_id])
-    @item = @list.items.update(item_params)
-    if @item.update
-      flash[:notice] = "Task was succesfully updated."
-    else
-      flash[:error] = 'There was an error. Please try again.'
-    end
-    respond_with(@item) do |format|
-      format.html { redirect_to @list }
-    end
-  end
-
   def destroy
     @list = List.find(params[:list_id])
     @item = @list.items.find(params[:id])
@@ -47,8 +34,14 @@ class ItemsController < ApplicationController
     @list_items.each do |item|
       item.destroy
     end
-    flash[:notice] = "List was cleared of all items."
-    redirect_to @list
+    if @list_items.destroy_all
+      flash[:notice] = "List was cleared of all items."
+    else
+      flash[:error] = 'There was an error. Please try again.'
+    end
+    respond_with(@list_items) do |format|
+      format.html { redirect_to @list }
+    end
   end
 
   private

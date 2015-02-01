@@ -20,7 +20,7 @@
         <h5>ToDo List Task</h5>
       </div>
       <div class="col-md-2 panel-title">
-        <h5>Time Left</h5>
+        <h5 class="sortable "><span class='pull-left'>Days left</span><%= sortable "created_at", " " %></h5>
       </div>
       <div class="col-md-2 panel-title">
         <h5>Actions</h5>
@@ -34,7 +34,7 @@
     <div class="panel-footer">
       <div class="pull-left">
         <p>
-          <%= link_to destroy_all_list_items_path(@list), class: "btn btn-warning btn-md", method: :delete, data: { confirm: "Are you sure you want to delete all the items on this list?" }  do %> 
+          <%= link_to destroy_all_list_items_path(@list), class: "btn btn-warning btn-md", method: :delete do %> 
             <span>Clear List?</span>
           <% end %> 
         </p>

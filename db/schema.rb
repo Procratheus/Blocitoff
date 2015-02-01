@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126235840) do
+ActiveRecord::Schema.define(version: 20150201023245) do
+
+  create_table "checkeds", force: true do |t|
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkeds", ["item_id"], name: "index_checkeds_on_item_id"
 
   create_table "items", force: true do |t|
     t.string   "name"

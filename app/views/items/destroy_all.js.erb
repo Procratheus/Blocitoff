@@ -1,0 +1,5 @@
+<% if @list_items.destroy_alled? %>
+  $('.list .col-md-12 .list-item').fadeOut();
+<% else %>
+  $('#item_' +<%= @item.id %>).prepend("<div class='alert alert-warning'><%= flash[:error] %></div>");
+<% end %>

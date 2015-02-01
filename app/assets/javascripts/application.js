@@ -16,3 +16,30 @@
 //= require_tree 
 //= require bootstrap-sprockets
 
+$(document).ready(function () {
+  // Allow the user to check and strikethrough items on their ToDo list  
+  console.log("ready");
+  $("body").on("change", 'input:checkbox', function() {
+    var text_span_id = $(this).next("span");
+    console.log(text_span_id);
+    if (this.checked) {
+        $(text_span_id).addClass("checked");
+    } else {
+        $(text_span_id).removeClass("checked");
+    }
+  })
+  var checked = function () {
+    var box = $('input:checkbox');
+    if (box.checked) {
+      box.next('span').addClass("checked");
+    } else {
+
+    }
+  };
+  checked()
+})
+
+
+
+
+

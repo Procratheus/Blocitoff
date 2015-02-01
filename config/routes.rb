@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:update]
   resources :lists, except: [:index] do
     resources :items, only: [:create, :destroy, :update] do
+      resources :checkeds , only: [:create, :destroy]
       collection do 
         delete :destroy_all
       end

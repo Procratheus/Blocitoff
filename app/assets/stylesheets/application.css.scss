@@ -23,6 +23,19 @@ body {
   border-bottom: 3px dashed whitesmoke;
 }
 
+.checked {
+  text-decoration: line-through;
+}
+
+input:first-child {
+  display: inline-block;
+}
+
+span:nth-child(2) {
+  display: inline-block;
+  margin-left:35px;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -76,7 +89,7 @@ body {
 
 .button-list {
   padding: 2px 4px;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 
 .input-bar {
@@ -121,6 +134,12 @@ body {
   margin-top: 2.5em;
 }
 
+/*  */
+.sortable {
+  padding-left: 0px;
+}
 
-
+.current {
+  margin-left:5px;
+}
 
