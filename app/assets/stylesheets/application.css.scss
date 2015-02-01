@@ -23,7 +23,7 @@ body {
   border-bottom: 3px dashed whitesmoke;
 }
 
-.checked {
+#striked {
   text-decoration: line-through;
 }
 
@@ -142,4 +142,6 @@ span:nth-child(2) {
 .current {
   margin-left:5px;
 }
+
+
 
