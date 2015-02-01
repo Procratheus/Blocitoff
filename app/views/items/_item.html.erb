@@ -1,24 +1,29 @@
 <% if item.persisted? %>
   <%= div_for(item, class: 'col-md-12 list-item', id: "item_#{item.id}") do %>
+    <% if item.errors.any? %>
+      <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <%= item.errors.full_messages %>
+      </div>
+    <% end %>
     <div class="col-md-8 description "> 
-      <% if checked = item.checked_item(item) %>     
-        <%= link_to [@list ,item, checked] , method: :destroy do %>
-          <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="check task" checked> 
-        <% end %> 
-        <span id="striked" class=<%= "#{item.id}" %> ><%= markdown item.name %> </span> 
+      <% if checked = item.checked_item(item) %>  
+      <%= link_to [item.list ,item, checked], method: :delete do %>
+        <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="check task" checked> 
+      <% end %> 
+        <span id="striked" class=<%= "#{item.id}" %> ><%= markdown item.name %> </span>     
       <% else %>
-        <%= link_to [@list ,item, Checked.new] , method: :post do %>
-          <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="Uncheck task"> 
-        <% end %> 
-        <span class=<%= "#{item.id}" %> ><%= markdown item.name %> </span> 
-      <% end %>    
-        
+      <%= link_to [item.list ,item, Checked.new], method: :post do %>
+        <input type="checkbox" class=<%= "#{item.id}" %> data-toggle="tool-tip", data-placement="top", title="Uncheck task"> 
+      <% end %> 
+        <span class=<%= "#{item.id}" %> ><%= markdown item.name %> </span>      
+      <% end %>           
     </div>
     <div class="time-left col-md-2">
       <%= "#{pluralize(item.days_left, "day")} left" %>
     </div> 
     <div class="button col-md-2">
-      <button class="btn btn-success btn-sm button-list", data-toggle="tool-tip", data-placement="top", title="Complete task">
+      <button class="btn btn-success btn-sm button-list",data-toggle="tool-tip", data-placement="top", title="Complete task">
         <%= link_to "", [item.list, item], class: "glyphicon glyphicon-ok", method: :delete, remote: true %>
       </button>
     </div>

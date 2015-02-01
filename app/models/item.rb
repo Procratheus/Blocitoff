@@ -12,4 +12,10 @@ class Item < ActiveRecord::Base
     checkeds.where(item_id: item.id).first
   end
 
+  def destroy
+    raise "Cannot delete an item unless it has been checked" unless checkeds.count == 1
+    super
+  end
+
 end
+
